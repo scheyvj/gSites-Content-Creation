@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive World Map</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .map-container {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+        }
+        .map {
+            width: 100%;
+            height: auto;
+        }
+        .geotag {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .info-box, .details-box, .guide-box {
+            position: absolute;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .info-box .info-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="map-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg" alt="World Map" class="map">
+        
+        <!-- USA Geotag (Adjusted) -->
+        <div class="geotag" style="top: 45%; left: 48%;" onmouseover="showInfo('usa')" onmouseout="hideInfo('usa')" onclick="openDetails('usa')"></div>
+        <div id="info-usa" class="info-box" style="top: 43%; left: 50%;">
+            USA - Click for more info
+            <button class="info-btn" onclick="openGuide('usa')">i</button>
+        </div>
+        
+        <!-- Canada Geotag (Adjusted) -->
+        <div class="geotag" style="top: 38%; left: 47%;" onmouseover="showInfo('canada')" onmouseout="hideInfo('canada')" onclick="openDetails('canada')"></div>
+        <div id="info-canada" class="info-box" style="top: 36%; left: 49%;">
+            Canada - Click for more info
+            <button class="info-btn" onclick="openGuide('canada')">i</button>
+        </div>
+    </div>
+
+    <!-- Detailed Info Boxes -->
+    <div id="details-usa" class="details-box" style="top: 20%; left: 50%; width: 200px;">
+        <span class="close-btn" onclick="closeDetails('usa')">&times;</span>
+        <h3>USA</h3>
+        <p>More details about the USA...</p>
+    </div>
+    
+    <div id="details-canada" class="details-box" style="top: 20%; left: 50%; width: 200px;">
+        <span class="close-btn" onclick="closeDetails('canada')">&times;</span>
+        <h3>Canada</h3>
+        <p>More details about Canada...</p>
+    </div>
+    
+    <!-- User Guide Boxes -->
+    <div id="guide-usa" class="guide-box" style="top: 50%; left: 50%; width: 250px;">
+        <span class="close-btn" onclick="closeGuide('usa')">&times;</span>
+        <h3>USA Guide</h3>
+        <p>This guide provides more information about the USA.</p>
+    </div>
+    
+    <div id="guide-canada" class="guide-box" style="top: 50%; left: 50%; width: 250px;">
+        <span class="close-btn" onclick="closeGuide('canada')">&times;</span>
+        <h3>Canada Guide</h3>
+        <p>This guide provides more information about Canada.</p>
+    </div>
+
+    <script>
+        function showInfo(country) {
+            document.getElementById('info-' + country).style.display = 'block';
+        }
+        function hideInfo(country) {
+            document.getElementById('info-' + country).style.display = 'none';
+        }
+        function openDetails(country) {
+            document.getElementById('details-' + country).style.display = 'block';
+        }
+        function closeDetails(country) {
+            document.getElementById('details-' + country).style.display = 'none';
+        }
+        function openGuide(country) {
+            document.getElementById('guide-' + country).style.display = 'block';
+        }
+        function closeGuide(country) {
+            document.getElementById('guide-' + country).style.display = 'none';
+        }
+    </script>
+</body>
+</html>
